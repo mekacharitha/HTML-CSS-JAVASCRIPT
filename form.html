@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+   
+<title>Form validation</title>
+
+<style>
+        h2 {
+            text-align: center;
+            text-decoration: underline;
+        }
+        form {
+            width: 700px;
+            background: #fff;
+            padding: 15px 40px 40px;
+            border: 2px solid #ccc;
+            margin: 50px auto 0;
+            border-radius: 5px;
+        }
+        .row {
+            padding: 20px;
+            flex-direction: row;
+        }
+
+</style>
+
+<script type="text/javascript">
+// Defining a function to validate form 
+function validateForm() {
+    // Retrieving the values of form elements 
+    var name = document.Form.name.value;
+    var branch =document.Form.branch.value ;
+    var email = document.Form.email.value;
+    var mobile = document.Form.mobile.value;
+    var country = document.Form.country.value;
+    var gender = document.Form.gender.value;
+    var address=document.Form.address.value; 
+    var pwd = document.Form.password.value;
+    var conpwd = document.Form.conformpassword.value;
+    
+    var hobbies = [];
+    var checkboxes = document.getElementsByName("hobbies[]");
+    for(var i=0; i < checkboxes.length; i++) {
+        if(checkboxes[i].checked) {
+            // Populate hobbies array with selected values
+            hobbies.push(checkboxes[i].value);
+        }
+    }
+    
+    // Validate mobile number
+    var regex = /^[1-9]\d{9}$/;
+    if(regex.test(mobile) === false) {
+       alert( "Please enter a valid 10 digit mobile number");
+    }
+    //validating password
+    if(pwd != conpwd){
+        alert("Please enter correct password")
+    }
+    // Creating a string from input data for preview
+    var dataPreview = "You've entered the following details: \n" +
+                          "Full Name: " + name + "\n" +
+                          "Email Address: " + email + "\n" +
+                          "Mobile Number: " + mobile + "\n" +
+                          "Branch: "+ branch+"\n"+
+                          "Country: " + country + "\n" +
+                          "Gender: " + gender + "\n"+
+                          "Address:" + address +"\n";
+    if(hobbies.length) {
+        dataPreview += "Hobbies: " + hobbies.join(", ");
+    }
+    // Display input data in a dialog box before submitting the form
+    alert(dataPreview);
+    
+};
+
+</script>
+</head>
+
+<body>
+<form name="Form" onsubmit="return validateForm()" >
+    <h2>Application Form</h2>
+    <div class="row">
+        <label>Full Name</label>
+        <input type="text" name="name">
+
+        <label>Branch</label>
+        <input type="text" name="branch">  
+    </div>
+
+    <div class="row">
+        <label>Email Address</label>
+        <input type="text" name="email">
+
+        <label>Mobile Number</label>
+        <input type="text" name="mobile" maxlength="10">
+    </div>
+    
+    <div class="row">
+        <label>Gender</label>
+        <label><input type="radio" name="gender" value="male"> Male</label>
+        <label><input type="radio" name="gender" value="female"> Female<label>
+
+        <label>Country</label>
+        <select name="country">
+            <option>Select</option>
+            <option>Australia</option>
+            <option>India</option>
+            <option>United States</option>
+            <option>United Kingdom</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <label>Address : </label>
+        <textarea rows="4" cols="50"  name="address" ></textarea>
+    </div>
+
+    <div class="row">
+        <label>Password : </label>
+        <input type="password" name="password">
+
+        <label>Conform Password : </label>
+        <input type="password" name="conformpassword">
+    </div>
+    
+    <div class="row">
+        <label>Hobbies </label>
+        <label><input type="checkbox" name="hobbies[]" value="sports"> Sports</label>
+        <label><input type="checkbox" name="hobbies[]" value="movies"> Movies</label>
+        <label><input type="checkbox" name="hobbies[]" value="music"> Music</label>  
+    </div>
+
+    <div class="row">
+        <input type="submit" value="Submit">
+    </div>
+
+</form>
+
+</body>
+</html>  
