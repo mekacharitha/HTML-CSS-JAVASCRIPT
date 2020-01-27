@@ -77,8 +77,13 @@
 
                      var check= $("<i class='fas fa-check'></i>").click(function(){
                          var p=$(this).parent();
-                        p.toggleClass("completed")
-                        $(".comp").append(p)
+                         p.fadeOut(function(){
+                        $(".comp").append(p);
+                        p.fadeIn();
+                    })
+                    $(this).remove();
+                       // p.toggleClass("completed")
+                        //$(".comp").append(p)
                      });
 
                     taskedit.append(del,check,edit);
@@ -89,8 +94,14 @@
             });
             var check= $("<i class='fas fa-check'></i>").click(function(){
                     var p=$(this).parent();
-                        p.toggleClass("completed")
-                        $(".comp").append(p)
+                    p.fadeOut(function(){
+                        $(".comp").append(p);
+                        p.fadeIn();
+                    })
+                    $(this).remove();
+                     //   p.toggleClass("completed")
+                    // $(".comp").append(p)
+
             });
 
             task.append(del,check,edit);
